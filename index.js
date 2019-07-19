@@ -1,11 +1,11 @@
 const glob = require('glob');
 const Mocha = require('mocha');
 const path = require('path');
-const pkg = require('../package.json');
+const pkg = require(path.join(process.cwd(), 'package.json'));
 
 console.log(`Running test suite for ${pkg.name}@${pkg.version}\n`);
 
-const depDir = path.resolve(path.join(__dirname, '..', 'node_modules'));
+const depDir = path.resolve(path.join(process.cwd(), 'node_modules'));
 const testFiles = getTestFiles();
 
 if(!testFiles.length) {
