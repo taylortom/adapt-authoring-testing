@@ -3,18 +3,22 @@ const Mocha = require('mocha');
 const path = require('path');
 const pkg = require(path.join(process.cwd(), 'package.json'));
 
-console.log(`Running test suite for ${pkg.name}@${pkg.version}\n`);
 
 const depDir = path.resolve(path.join(process.cwd(), 'node_modules'));
-const testFiles = getTestFiles();
 
-if(!testFiles.length) {
-  console.log('\nNo tests defined!\n');
-  process.exit();
+function init() {
+  console.log(`Running test suite for ${pkg.name}@${pkg.version}\n`);
+
+  const testFiles = getTestFiles();
+
+  if(!testFiles.length) {
+    console.log('\nNo tests defined!\n');
+    process.exit();
+  }
+  const mocha = new Mocha();
+  mocha.files.push(...testFiles);
+  mocha.run(errors => process.exit(errors ? 1 : 0));
 }
-const mocha = new Mocha();
-mocha.files.push(...testFiles);
-mocha.run(errors => process.exit(errors ? 1 : 0));
 
 function getTestConfig(d) {
   let dpkg;
@@ -49,3 +53,5 @@ function getTestFiles() {
     return m.concat(tests);
   }, []);
 }
+
+module.exports = init;
