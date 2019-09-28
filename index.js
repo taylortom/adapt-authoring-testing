@@ -15,6 +15,8 @@ function init() {
     console.log('\nNo tests defined!\n');
     process.exit();
   }
+  setGlobalData();
+
   const mocha = new Mocha();
   mocha.files.push(...testFiles);
   mocha.run(errors => process.exit(errors ? 1 : 0));
@@ -52,6 +54,13 @@ function getTestFiles() {
     }
     return m.concat(tests);
   }, []);
+}
+
+function setGlobalData() {
+  global.ADAPT.app = {
+    dependencies: [],
+    lang: { t: k => k }
+  };
 }
 
 module.exports = init;
