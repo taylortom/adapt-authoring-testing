@@ -57,9 +57,11 @@ function getTestFiles() {
 }
 
 function setGlobalData() {
-  global.ADAPT.app = {
-    dependencies: [],
-    lang: { t: k => k }
+  global.ADAPT = {
+    app: {
+      dependencies: [],
+      lang: { t: k => k }
+    }
   };
 }
 
