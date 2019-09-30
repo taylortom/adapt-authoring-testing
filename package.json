@@ -5,6 +5,7 @@
   "homepage": "https://github.com/taylortom/adapt-authoring-testing",
   "main": "index.js",
   "dependencies": {
-    "mocha": "6.2.0"
+    "mocha": "6.2.0",
+    "should": "13.2.3"
   }
 }
