@@ -4,6 +4,14 @@
   "description": "Module for running automated tests on the Adapt authoring tool",
   "homepage": "https://github.com/taylortom/adapt-authoring-testing",
   "main": "index.js",
+  "adapt_authoring": {
+    "documentation": {
+      "enable": true,
+      "includes": {
+        "docs": "docs/*"
+      }
+    }
+  },
   "dependencies": {
     "mocha": "6.2.0",
     "should": "13.2.3"
