@@ -15,6 +15,19 @@ As a general rule, you should at least aim to cover the following:
 - Aim to cover as many edge-cases as you can foresee at the time of writing (adding more any time you see them/have time).
 - Add tests to cover any bugs you find _before_ you fix them.
 
+## Enabling tests
+Before any tests in your module are included when the authoring tool test suite is run, you must add some extra config to your module's `package.json`:
+```javascript
+{
+  "adapt_authoring": {
+    "testing": {
+      "tests": "tests/*.spec.js"
+    }
+  }
+}
+```
+The above assumes that your tests are in a folder named `tests`, and named according to the pattern `*.spec.js` (e.g. `lib.spec.js`).
+
 ## Defining tests
 The tests themselves are written in JavaScript, and thanks to `Should.js` are easy to read.
 
