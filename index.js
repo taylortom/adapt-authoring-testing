@@ -3,7 +3,6 @@ const Mocha = require('mocha');
 const path = require('path');
 const pkg = require(path.join(process.cwd(), 'package.json'));
 
-
 const depDir = path.resolve(path.join(process.cwd(), 'node_modules'));
 
 function init() {
