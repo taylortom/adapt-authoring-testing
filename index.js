@@ -2,8 +2,7 @@ const glob = require('glob');
 const Mocha = require('mocha');
 const path = require('path');
 const pkg = require(path.join(process.cwd(), 'package.json'));
-
-const depDir = path.resolve(path.join(process.cwd(), 'node_modules'));
+const { App, Utils } = require('adapt-authoring-core');
 
 function init() {
   console.log(`Running test suite for ${pkg.name}@${pkg.version}\n`);
@@ -24,7 +23,7 @@ function init() {
 function getTestConfig(d) {
   let dpkg;
   try {
-    dpkg = require(path.join(depDir, d, 'package.json'));
+    dpkg = require(path.join(Utils.getModuleDir(d), 'package.json'));
   } catch(e) {
     console.log(`ERROR: ${e}`);
     return;
@@ -40,12 +39,12 @@ function getTestConfig(d) {
 }
 
 function getTestFiles() {
-  return [...Object.keys(pkg.dependencies), ...Object.keys(pkg.devDependencies)].reduce((m, d) => {
+  return Object.keys(App.instance.dependencies).reduce((m, d) => {
     const testConf = getTestConfig(d);
     if(!testConf) {
       return m;
     }
-    const tests = glob.sync(testConf.tests, { cwd: path.join(depDir, d), realpath: true });
+    const tests = glob.sync(testConf.tests, { cwd: Utils.getModuleDir(d), realpath: true });
 
     if(!tests.length) {
       console.log(`WARN: '${d}' defines tests (${testConf.tests}), but none exist`);
