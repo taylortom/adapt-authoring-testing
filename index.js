@@ -34,12 +34,23 @@ function getTestFiles() {
 }
 
 function setGlobalData() {
+  const config = generateConfigData();
   global.ADAPT = {
     app: {
       dependencies: [],
-      lang: { t: k => k }
+      lang: { t: k => k },
+      config: { config, get: key => key }
     }
   };
+}
+
+function generateConfigData() {
+  const configName = `${process.env.NODE_ENV}.config.js`;
+  const configPath = path.join(process.cwd(), 'conf', `${process.env.NODE_ENV}.config.js`);
+  return Object.entries(require(configPath)).reduce((m,[d,c]) => {
+    Object.entries(c).forEach(([k,v]) => m[`${d}.${k}`] = v);
+    return m;
+  },{});
 }
 
 module.exports = init;
