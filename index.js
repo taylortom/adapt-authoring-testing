@@ -4,6 +4,8 @@ const path = require('path');
 const pkg = require(path.join(process.cwd(), 'package.json'));
 const { App, Utils } = require('adapt-authoring-core');
 
+const TESTS_GLOB = 'tests/*.spec.js';
+
 function init() {
   console.log(`Running test suite for ${pkg.name}@${pkg.version}\n`);
 
@@ -20,34 +22,11 @@ function init() {
   mocha.run(errors => process.exit(errors ? 1 : 0));
 }
 
-function getTestConfig(d) {
-  let dpkg;
-  try {
-    dpkg = require(path.join(Utils.getModuleDir(d), 'package.json'));
-  } catch(e) {
-    console.log(`ERROR: ${e}`);
-    return;
-  }
-  if(!dpkg.hasOwnProperty('adapt_authoring')) {
-    return;
-  }
-  if(!dpkg.adapt_authoring.hasOwnProperty('testing')) {
-    console.log(`WARN: '${d}' doesn't define any tests`);
-    return;
-  }
-  return dpkg.adapt_authoring.testing;
-}
-
 function getTestFiles() {
   return Object.keys(App.instance.dependencies).reduce((m, d) => {
-    const testConf = getTestConfig(d);
-    if(!testConf) {
-      return m;
-    }
-    const tests = glob.sync(testConf.tests, { cwd: Utils.getModuleDir(d), realpath: true });
-
+    const tests = glob.sync(TESTS_GLOB, { cwd: Utils.getModuleDir(d), realpath: true });
     if(!tests.length) {
-      console.log(`WARN: '${d}' defines tests (${testConf.tests}), but none exist`);
+      console.log(`WARN: '${d}' doesn't define any tests`);
       return m;
     }
     return m.concat(tests);
