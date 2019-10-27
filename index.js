@@ -21,7 +21,9 @@ function init() {
   mocha.files.push(...testFiles);
   mocha.run(errors => process.exit(errors ? 1 : 0));
 }
-
+/**
+* Lists test specs to be run
+*/
 function getTestFiles() {
   return getModulesForTesting().reduce((m,d) => {
     const tests = glob.sync(TESTS_GLOB, { cwd: Utils.getModuleDir(d), realpath: true });
@@ -30,7 +32,10 @@ function getTestFiles() {
     return m.concat(tests);
   }, []);
 }
-
+/**
+* Returns the list of modules which should be tested
+* if --modules= is passed, only specified modules will be tested
+*/
 function getModulesForTesting() {
   const includedModules = process.env.aat_modules;
   const allDeps = Object.keys(App.instance.dependencies);
@@ -44,7 +49,9 @@ function getModulesForTesting() {
     return a;
   }, []);
 }
-
+/**
+* Mocks the App instance for use in tests
+*/
 function setGlobalData() {
   const config = generateConfigData();
   global.ADAPT = {
@@ -55,7 +62,9 @@ function setGlobalData() {
     }
   };
 }
-
+/**
+* Loads the testing config data
+*/
 function generateConfigData() {
   const configName = `${process.env.NODE_ENV}.config.js`;
   const configPath = path.join(process.cwd(), 'conf', `${process.env.NODE_ENV}.config.js`);
