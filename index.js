@@ -12,7 +12,7 @@ function init() {
   const testFiles = getTestFiles();
 
   if(!testFiles.length) {
-    console.log('\nNo tests defined!\n');
+    console.log('No tests defined!');
     process.exit();
   }
   setGlobalData();
@@ -23,13 +23,25 @@ function init() {
 }
 
 function getTestFiles() {
-  return Object.keys(App.instance.dependencies).reduce((m, d) => {
+  return getModulesForTesting().reduce((m,d) => {
     const tests = glob.sync(TESTS_GLOB, { cwd: Utils.getModuleDir(d), realpath: true });
-    if(!tests.length) {
-      console.log(`WARN: '${d}' doesn't define any tests`);
-      return m;
-    }
+    if(!tests.length) return m;
+    console.log(`Tests defined for '${d}'`);
     return m.concat(tests);
+  }, []);
+}
+
+function getModulesForTesting() {
+  const includedModules = process.env.aat_modules;
+  const allDeps = Object.keys(App.instance.dependencies);
+  if(!includedModules) {
+    return allDeps;
+  }
+  return includedModules.split(',').reduce((a,m) => {
+    const mLong = `adapt-authoring-${m}`;
+    if(allDeps.includes(m)) a.push(m);
+    else if(allDeps.includes(mLong)) a.push(mLong);
+    return a;
   }, []);
 }
 
