@@ -57,8 +57,9 @@ function setGlobalData() {
   global.ADAPT = {
     app: {
       dependencies: [],
+      dependencyloader: { modules: {}, utilities: {} },
       lang: { t: k => k },
-      config: { config, get: key => key }
+      config: { config, get: key => config[key] || key }
     }
   };
 }
