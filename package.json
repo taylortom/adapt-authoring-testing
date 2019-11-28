@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "mocha": "6.2.0",
-    "should": "13.2.3"
+    "should": "13.2.3",
+    "supertest": "4.0.2"
   },
   "peerDependencies": {
     "adapt-authoring-core": "github:adapt-security/adapt-authoring-core.git"
