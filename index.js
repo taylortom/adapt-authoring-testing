@@ -6,8 +6,10 @@ const { App, Utils } = require('adapt-authoring-core');
 
 const TESTS_GLOB = 'tests/*.spec.js';
 
-function init() {
+async function init() {
   console.log(`Running test suite for ${pkg.name}@${pkg.version}\n`);
+
+  await App.instance.onReady();
 
   const testFiles = getTestFiles();
 
