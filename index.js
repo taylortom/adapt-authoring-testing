@@ -1,9 +1,9 @@
 const glob = require('glob');
 const Mocha = require('mocha');
 const path = require('path');
-const pkg = require(path.join(process.cwd(), 'package.json'));
 const { App, Utils } = require('adapt-authoring-core');
 
+const pkg = Utils.requirePackage();
 const TESTS_GLOB = 'tests/*.spec.js';
 
 async function init() {
