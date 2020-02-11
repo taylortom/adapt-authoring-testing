@@ -3,10 +3,10 @@ const Mocha = require('mocha');
 const path = require('path');
 const { App, Utils } = require('adapt-authoring-core');
 
-const pkg = Utils.requirePackage();
 const TESTS_GLOB = 'tests/*.spec.js';
 
 async function init() {
+  const pkg = await Utils.requirePackage();
   console.log(`Running test suite for ${pkg.name}@${pkg.version}\n`);
 
   await App.instance.onReady();
