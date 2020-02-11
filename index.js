@@ -21,7 +21,12 @@ async function init() {
 
   const mocha = new Mocha();
   mocha.files.push(...testFiles);
-  mocha.run(errors => process.exit(errors ? 1 : 0));
+  try {
+    mocha.run(errors => process.exit(errors ? 1 : 0));
+  } catch(e) {
+    console.log(e);
+    process.exit(1);
+  }
 }
 /**
 * Lists test specs to be run
