@@ -75,7 +75,6 @@ function setGlobalData() {
 * Loads the testing config data
 */
 function generateConfigData() {
-  const configName = `${process.env.NODE_ENV}.config.js`;
   const configPath = path.join(process.cwd(), 'conf', `${process.env.NODE_ENV}.config.js`);
   return Object.entries(require(configPath)).reduce((m,[d,c]) => {
     Object.entries(c).forEach(([k,v]) => m[`${d}.${k}`] = v);
