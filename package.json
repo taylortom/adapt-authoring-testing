@@ -2,7 +2,9 @@
   "name": "adapt-authoring-testing",
   "version": "0.0.1",
   "description": "Module for running automated tests on the Adapt authoring tool",
-  "homepage": "https://github.com/taylortom/adapt-authoring-testing",
+  "homepage": "https://github.com/adaptlearning/adapt-authoring-testing",
+  "license": "GPL-3.0",
+  "repository": "github:adaptlearning/adapt-authoring-testing",
   "main": "index.js",
   "dependencies": {
     "mocha": "6.2.0",
