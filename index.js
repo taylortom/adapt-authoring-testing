@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 const glob = require('glob');
 const Mocha = require('mocha');
 const path = require('path');
@@ -29,8 +30,8 @@ async function init() {
   }
 }
 /**
-* Lists test specs to be run
-*/
+ * Lists test specs to be run
+ */
 function getTestFiles() {
   return getModulesForTesting().reduce((m,d) => {
     const tests = glob.sync(TESTS_GLOB, { cwd: Utils.getModuleDir(d), realpath: true });
@@ -40,9 +41,9 @@ function getTestFiles() {
   }, []);
 }
 /**
-* Returns the list of modules which should be tested
-* if --modules= is passed, only specified modules will be tested
-*/
+ * Returns the list of modules which should be tested
+ * if --modules= is passed, only specified modules will be tested
+ */
 function getModulesForTesting() {
   const includedModules = process.env.aat_modules;
   const allDeps = Object.keys(App.instance.dependencies);
@@ -57,8 +58,8 @@ function getModulesForTesting() {
   }, []);
 }
 /**
-* Mocks the App instance for use in tests
-*/
+ * Mocks the App instance for use in tests
+ */
 function setGlobalData() {
   const config = generateConfigData();
   global.ADAPT = {
@@ -72,8 +73,8 @@ function setGlobalData() {
   };
 }
 /**
-* Loads the testing config data
-*/
+ * Loads the testing config data
+ */
 function generateConfigData() {
   const configPath = path.join(process.cwd(), 'conf', `${process.env.NODE_ENV}.config.js`);
   return Object.entries(require(configPath)).reduce((m,[d,c]) => {
