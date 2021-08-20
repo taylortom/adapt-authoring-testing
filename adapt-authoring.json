@@ -3,7 +3,8 @@
   "documentation": {
     "enable": true,
     "manualSections": {
-      "writing-tests": "advanced"
+      "running-tests.md": "basics",
+      "writing-tests.md": "advanced"
     }
   }
 }
