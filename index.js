@@ -6,6 +6,8 @@ const { App, Utils } = require('adapt-authoring-core');
 
 const TESTS_GLOB = 'tests/*.spec.js';
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'testing';
+
 async function init() {
   const pkg = await Utils.requirePackage();
   console.log(`Running test suite for ${pkg.name}@${pkg.version}\n`);
