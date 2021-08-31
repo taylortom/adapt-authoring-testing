@@ -83,4 +83,4 @@ function generateConfigData() {
   },{});
 }
 
-module.exports = init;
+module.exports = init();
