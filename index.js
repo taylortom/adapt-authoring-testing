@@ -1,4 +1,8 @@
-/* eslint no-console: 0 */
+#!/usr/bin/env node
+/**
+ * Runs the automated testing suite.
+ * @param {String} --modules=[modules...] Comma separated list specifying which modules should be tested (all modules are tested by default).
+ */
 const glob = require('glob');
 const Mocha = require('mocha');
 const path = require('path');
