@@ -51,7 +51,7 @@ function getTestFiles() {
  * if --modules= is passed, only specified modules will be tested
  */
 function getModulesForTesting() {
-  const includedModules = process.env.aat_modules;
+  const includedModules = App.instance.args.modules;
   const allDeps = Object.keys(App.instance.dependencies);
   if(!includedModules) {
     return allDeps;
