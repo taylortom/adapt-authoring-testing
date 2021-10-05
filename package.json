@@ -4,11 +4,11 @@
   "description": "Module for running automated tests on the Adapt authoring tool",
   "homepage": "https://github.com/adaptlearning/adapt-authoring-testing",
   "license": "GPL-3.0",
-  "repository": "adaptlearning/adapt-authoring-testing",
   "main": "index.js",
   "bin": {
     "aat-test": "./index.js"
   },
+  "repository": "adaptlearning/adapt-authoring-testing",
   "dependencies": {
     "mocha": "^8.1.3",
     "should": "13.2.3",
