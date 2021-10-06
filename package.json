@@ -6,7 +6,7 @@
   "license": "GPL-3.0",
   "main": "index.js",
   "bin": {
-    "aat-test": "./index.js"
+    "at-test": "./index.js"
   },
   "repository": "adaptlearning/adapt-authoring-testing",
   "dependencies": {
