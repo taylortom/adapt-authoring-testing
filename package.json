@@ -2,14 +2,14 @@
   "name": "adapt-authoring-testing",
   "version": "0.0.1",
   "description": "Module for running automated tests on the Adapt authoring tool",
-  "homepage": "https://github.com/adaptlearning/adapt-authoring-testing",
+  "homepage": "https://github.com/adapt-security/adapt-authoring-testing",
   "license": "GPL-3.0",
   "type": "module",
   "main": "index.js",
   "bin": {
     "at-test": "./index.js"
   },
-  "repository": "adaptlearning/adapt-authoring-testing",
+  "repository": "github:adapt-security/adapt-authoring-testing",
   "dependencies": {
     "mocha": "^9.1.3",
     "should": "13.2.3",
