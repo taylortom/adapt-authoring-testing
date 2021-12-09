@@ -10,7 +10,7 @@
     "at-test": "./index.js"
   },
   "repository": "github:adapt-security/adapt-authoring-testing",
-  "dependencies": {
+  "devDependencies": {
     "mocha": "^9.1.3",
     "should": "13.2.3",
     "supertest": "4.0.2"
