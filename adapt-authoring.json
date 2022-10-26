@@ -3,7 +3,7 @@
   "documentation": {
     "enable": true,
     "manualPages": {
-      "running-tests.md": "basics",
+      "running-tests.md": "getting-started",
       "writing-tests.md": "advanced"
     }
   }
