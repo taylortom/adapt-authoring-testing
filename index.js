@@ -4,7 +4,7 @@
  * @param {String} --modules=[modules...] Comma separated list specifying which modules should be tested (all modules are tested by default).
  */
 import { App } from 'adapt-authoring-core'
-import glob from 'glob'
+import { globSync } from 'glob'
 import Mocha from 'mocha'
 
 const TESTS_GLOB = 'tests/*.spec.js'
@@ -39,7 +39,7 @@ function getTestFiles () {
     .filter(d => !whitelist.length || whitelist.includes(d.name) || whitelist.includes(`adapt-authoring-${d.name}`))
 
   return includedModules.reduce((modules, mod) => {
-    const tests = glob.sync(TESTS_GLOB, { cwd: mod.rootDir, realpath: true })
+    const tests = globSync(TESTS_GLOB, { cwd: mod.rootDir, realpath: true })
     if (!tests.length) return modules
     console.log(`Tests defined for '${mod.name}'`)
     return modules.concat(tests)
